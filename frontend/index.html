@@ -65,9 +65,12 @@
 
         //entry point (executed when DOM is loaded)
         (async function () {
-            init();
+            init(
+                console.log('From init()')
+            );
         })();
     </script>
 </body>
 
 </html>
+
