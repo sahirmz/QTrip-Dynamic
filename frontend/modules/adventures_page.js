@@ -5,20 +5,79 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-
+  const urlElement = new URLSearchParams(search);
+  return urlElement.get("city");
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
-
+  try{
+    const fecAdventures = await fetch(config.backendEndpoint + `/adventures?city=${city}`);
+    const response = await fecAdventures.json();
+      return response;
+  } catch(err){
+    return null;
+  }
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
+  adventures.map((e) => {
+    const parent = document.getElementById('data');
+    const container = document.createElement('div');
+    container.setAttribute("class", "col-6 col-lg-3 mb-6 position-relative");
+
+    const aTag = document.createElement('a');
+    aTag.innerHTML = `<a href="/detail/?adventure=${e.id}" id="${e.id}"></a>`
+
+    const divElement = document.createElement('div');
+    divElement.setAttribute("class", "activity-card");
+
+    const imgElement = document.createElement("img");
+    imgElement.setAttribute("src", e.image);
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "d-flex justify-content-between p-2");
+
+    const nameElement = document.createElement("h6");
+    nameElement.innerText = e.name;
+
+    const cost = document.createElement("h6");
+    cost.innerText = `${e.costPerhead} ${e.currency}`;
+
+    const div2 = document.createElement("h6");
+    div2.setAttribute("class", "d-flex justify-content-between p-2");
+
+    const durationElement = document.createElement("h6");
+    durationElement.innerText = "Duration";
+
+    const timeElement = document.createElement("h6");
+    timeElement.innerText = e.duration + " Hours";
+
+    const categoryElement = document.createElement("div");
+    categoryElement.setAttribute("class", "category-banner");
+
+    const textElement = document.createElement("span");
+    textElement.innerText = e.category;
+
+    categoryElement.appendChild(textElement);
+    divElement.appendChild(categoryElement);
+
+    div.appendChild(nameElement);
+    div.appendChild(cost);
+    div2.appendChild(durationElement);
+    div2.appendChild(timeElement);
+    divElement.appendChild(imgElement);
+    divElement.appendChild(div);
+    divElement.appendChild(div2);
+    aTag.appendChild(divElement);
+    container.appendChild(aTag);
+    parent.appendChild(container);
+  })
 
 }
 
@@ -26,6 +85,7 @@ function addAdventureToDOM(adventures) {
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
+  
 
 }
 
