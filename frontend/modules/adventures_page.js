@@ -90,6 +90,7 @@ function filterByDuration(list, low, high) {
   })
   console.log(filterDuration);
   return filterDuration;
+
 }
 
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
@@ -141,6 +142,8 @@ function saveFiltersToLocalStorage(filters) {
 
   return true;
 }
+
+
 
 //Implementation of localStorage API to get filters from local storage. This should get called whenever the DOM is loaded.
 function getFiltersFromLocalStorage() {
