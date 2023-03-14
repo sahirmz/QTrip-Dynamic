@@ -81,6 +81,7 @@ function addAdventureToDOM(adventures) {
   });
 }
 
+
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
