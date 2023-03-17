@@ -33,7 +33,8 @@ function addAdventureToDOM(adventures) {
     container.setAttribute("class", "col-6 col-lg-3 mb-6 position-relative");
 
     const aTag = document.createElement("a");
-    aTag.innerHTML = `<a href="detail/?adventure=${e.id}" id="${e.id}"></a>`;
+    aTag.setAttribute("href",`detail/?adventure=${e.id}`);
+    aTag.setAttribute("id",`${e.id}`);
 
     const divElement = document.createElement("div");
     divElement.setAttribute("class", "activity-card");
